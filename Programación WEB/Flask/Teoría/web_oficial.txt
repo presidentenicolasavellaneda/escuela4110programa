@@ -1,0 +1,170 @@
+https://flask.palletsprojects.com/en/3.0.x/
+
+1-Ambientes Virtuales:
+Use a virtual environment to manage the dependencies for your project, both in development and in production.s
+
+macOS/Linux:
+$ mkdir proyectos_web_linux
+$ cd proyectos_web_linux
+$ python3 -m venv .venvLinux
+
+Windows:
+mkdir myproject
+cd myproject
+python3 -m venv .venvWindows
+
+----------------------------------------------------------------------------
+
+2-Activación:
+
+macOS/Linux:
+$ . .venvLinux/bin/activate
+
+Windows:
+.venvWindows\Scripts\activate
+
+----------------------------------------------------------------------------
+
+3-Instalar Flask:
+Dentro del ambiente virtual , usar el siguiente comando para instalar Flask:
+pip install Flask
+
+----------------------------------------------------------------------------
+
+4-Una aplicción de ejemplo:
+A minimal Flask application looks something like this:
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hola, bienvenido a mi aplicación Flask!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+...creamos un archivo que se llame holaFlask.py y lo guardamos.
+
+----------------------------------------------------------------------------
+
+5-Ejecutar la app:
+Desde la terminal de Visual Studio Code escribir lo siguiente:
+python holaFlask.py
+
+----------------------------------------------------------------------------
+
+6-Una app de Flask con Bootstrap:
+Una vez hecha la instalación del entorno virtual y de Flask y haber ejecutado el entorno virtual,
+creamos una carpeta dentro proyectos_web_windows, por ejemplo que se llame esa carpeta:
+proyecto_0002
+Dentro de esa carpeta tenemos que tener la siguiente estructura de carpetas y archivos:
+/proyecto_0002
+    /static
+    /templates
+        layout.html
+        home.html
+        about.html
+    app.py
+
+Creamos un archivo app.py dentro de la carpeta proyecto_0002 y escribimos el siguiente código de python:
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+4. Templates HTML con Bootstrap
+Bootstrap puede ser incorporado a través de su CDN (Content Delivery Network). 
+No necesitas descargar los archivos de Bootstrap manualmente, 
+simplemente incluye los enlaces proporcionados por Bootstrap en tus archivos HTML.
+
+Crear layout.html
+En la carpeta templates, crea un archivo layout.html. 
+Este archivo será la base que incluirá todos los elementos comunes de la página como el header, 
+footer, y los enlaces a Bootstrap.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">FlaskApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+Crear home.html y about.html
+Estos archivos extenderán layout.html y agregarán su propio contenido específico.
+
+home.html:
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Home Page</h1>
+    <p>This is the home page of our simple Flask Bootstrap application.</p>
+{% endblock %}
+
+about.html:
+{% extends 'layout.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+    <h1>About Us</h1>
+    <p>This page gives you a brief introduction about us.</p>
+{% endblock %}
+
+Ejecución de la Aplicación
+Para ejecutar la aplicación, simplemente escribe lo siguiente en la terminal:
+
+python app.py
+
+Visualización en el Navegador
+Abre un navegador web y ve a http://127.0.0.1:5000/ para ver la página de inicio de tu aplicación con Bootstrap. 
+También puedes visitar http://127.0.0.1:5000/about para ver la página "About".
+
+Al seguir estos pasos, habrás creado una aplicación Flask simple con páginas estilizadas usando Bootstrap. 
+Puedes expandir esta base agregando más funcionalidades y páginas según sea necesario.
