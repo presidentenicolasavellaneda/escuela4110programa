@@ -1,9 +1,1 @@
-[
-    {
-        "id": "20240504215140",
-        "name": "Leonel",
-        "surname": "Messi",
-        "dni": 12345678,
-        "gender": "M"
-    }
-]
+[{"id": "20240504215140", "name": "Leonel", "surname": "Messi", "dni": 12345678, "gender": "M"}, {"id": "20240506091258", "name": "Albert", "surname": "Einstein", "dni": 21345678, "gender": "M"}]
